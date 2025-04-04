@@ -4,9 +4,9 @@ pipeline {
     environment {
         DOCKER_HUB_CREDS = credentials('dockerhub')
         APP_VERSION = "${env.BUILD_NUMBER}"
-        DOCKER_IMAGE = "your-actual-dockerhub-username/cw2-server"
+        DOCKER_IMAGE = "ravi787/cw2-server"
         DOCKER_TAG = "${env.BUILD_NUMBER}"
-        PROD_SERVER = "actual-production-server-ip"
+        PROD_SERVER = "54.146.137.190"
     }
     
     stages {
