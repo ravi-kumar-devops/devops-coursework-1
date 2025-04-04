@@ -6,7 +6,7 @@ var host;
 
 var handleRequest = function(request, response) {
   response.setHeader('Content-Type', 'text/plain');
-  response.writeHead(200);
+  response.writeHead(201);
   response.write("DevOps Coursework 2! | Running on: ");
   response.write(host);
   response.end(" | v=1\n");
