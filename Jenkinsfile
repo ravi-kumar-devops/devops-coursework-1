@@ -43,7 +43,7 @@ pipeline {
         
         stage('Deploy to Kubernetes') {
             steps {
-                sshagent(['prod-server-ssh']) {
+                sshagent(['ubuntu']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ubuntu@${PROD_SERVER} '
                         kubectl set image deployment/cw2-server cw2-server=${DOCKER_IMAGE}:${DOCKER_TAG}
