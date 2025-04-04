@@ -2,10 +2,11 @@ pipeline {
     agent any
     
     environment {
+        DOCKER_HUB_CREDS = credentials('dockerhub')
         APP_VERSION = "${env.BUILD_NUMBER}"
         DOCKER_IMAGE = "ravi787/cw2-server"
         DOCKER_TAG = "${env.BUILD_NUMBER}"
-        PROD_SERVER = "192.168.1.100"  // Replace with your actual production server IP
+        PROD_SERVER = "54.146.137.190"
     }
     
     stages {
@@ -34,10 +35,7 @@ pipeline {
         
         stage('Push to DockerHub') {
             steps {
-                // Using direct credentials (less secure but for troubleshooting)
-                sh '''
-                echo "3AQ9uAEpffeH" | docker login -u ravi787 --password-stdin
-                '''
+                sh "echo ${DOCKER_HUB_CREDS_PSW} | docker login -u ${DOCKER_HUB_CREDS_USR} --password-stdin"
                 sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 sh "docker push ${DOCKER_IMAGE}:latest"
             }
